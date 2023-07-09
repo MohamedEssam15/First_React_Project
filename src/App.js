@@ -1,6 +1,8 @@
 import Home from "./Home";
 import './App.css';
 import Navbar from "./Navbar";
+import About from "./About";
+import Post from "./Post";
 
 function App() {
   const name='Mohamed Essam';
@@ -14,7 +16,10 @@ function App() {
         <h1>My Name is { name}</h1>
         <h2>My age is { age}</h2>
         <h3> My salary is {salary} {currency}</h3><br/>
-        
+
+
+        <Post />
+        <About />
     </div>
     
     );
