@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import Home from "./Home";
 import './App.css';
+import Navbar from "./Navbar";
 
 function App() {
+  const name='Mohamed Essam';
+  const age=23;
+  const salary=10000;
+  const currency='EGP';
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Home />
+        <h1>My Name is { name}</h1>
+        <h2>My age is { age}</h2>
+        <h3> My salary is {salary} {currency}</h3><br/>
+        
     </div>
-  );
-}
-
-export default App;
+    
+    );
+  }
+  
+  export default App;
+  
