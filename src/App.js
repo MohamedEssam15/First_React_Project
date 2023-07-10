@@ -12,14 +12,8 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Home />
-        <h1>My Name is { name}</h1>
-        <h2>My age is { age}</h2>
-        <h3> My salary is {salary} {currency}</h3><br/>
-
-
-        <Post />
-        <About />
+        <h1>POSTS</h1>
+        <Post />``
     </div>
     
     );
