@@ -4,7 +4,8 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const EditPost = ()=>{
     const {id} = useParams();
-    const [userId,setuserId]=useState(""); 
+    const [userId,setuserId]=useState("");
+    const [isWaiting,setisWating]=useState(true); 
     const [title,settitle]=useState("");
     const [body,setbody]=useState("");
     const [ServerError,setServerError]=useState(null);
@@ -12,7 +13,6 @@ const EditPost = ()=>{
     const [waitingserver,setwaitingserver]=useState(false);
 
     useEffect(()=>{
-        setwaitingserver(true);
         setTimeout(()=>{
             fetch('https://jsonplaceholder.typicode.com/posts/'+id)
         .then(Response=>{
@@ -25,11 +25,10 @@ const EditPost = ()=>{
         .then(data=>{
             setuserId(data.userId);
             settitle(data.title);
-            setbody(data.body);
-            setwaitingserver(false);
+            setbody(data.body);            
+            setisWating(false);
         }).catch(e=>{
-            
-            setwaitingserver(false);
+            setisWating(false);
             setServerError(e.message);
         });
         },2000);
@@ -39,6 +38,7 @@ const EditPost = ()=>{
         e.preventDefault();
         setwaitingserver(true);
         const mypost ={
+            id,
             title ,
             body,
             userId,
@@ -69,9 +69,9 @@ const EditPost = ()=>{
 <div className="container-xl ">
             <br/>
             {ServerError &&   <h1>{ServerError}</h1>}
-            {waitingserver &&   <h1>Please Wait we are Geting Data</h1>}
-            {waitingserver &&    <img src={process.env.PUBLIC_URL + '/loader.svg'} alt="svg" />}
-                {!waitingserver && <div className="card">
+            {isWaiting &&   <h1>Please Wait we are Geting Data</h1>}
+            {isWaiting &&    <img src={process.env.PUBLIC_URL + '/loader.svg'} alt="svg" />}
+                {!isWaiting && <div className="card">
                     <div className="card-body text-start" >
                         <form onSubmit={onsubmit}>
                             <div className="mb-3">
@@ -87,7 +87,7 @@ const EditPost = ()=>{
                                 <textarea className="form-control" id="body" name="body" placeholder="pla pla pla" rows="3" required value={body} onChange={(e)=>setbody(e.target.value)} ></textarea>
                             </div>
                             <div className="col-auto">
-                                {!waitingserver && <button type="submit" className="btn btn-success mb-3">Create</button>}
+                                {!waitingserver && <button type="submit" className="btn btn-success mb-3">Update</button>}
                                 {waitingserver && <button type="submit" disabled className="btn btn-info mb-3">Please wait</button>}
                             </div>
                         </form>

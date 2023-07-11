@@ -7,7 +7,7 @@ import PostModel from "./PostModel";
 
 const Post=()=>{
     
-    const {isWaiting,ServerError,posts,deletefun} =PostModel('https://jsonplaceholder.typicode.com/posts');
+    const {isWaiting,ServerError,posts,deletefun,waitingserver} =PostModel('https://jsonplaceholder.typicode.com/posts');
 //     const [posts1, setposts1]=useState([
 //         {
 //         userId: 1,
@@ -53,7 +53,7 @@ const Post=()=>{
             {ServerError &&   <h1>{ServerError}</h1>}
             {isWaiting &&   <h1>Please Wait we are Geting Data</h1>}
             {isWaiting &&    <img src={process.env.PUBLIC_URL + '/loader.svg'} alt="svg" />}
-            {posts &&  <PostsList posts={posts} deletefun={deletefun}/>}
+            {posts &&  <PostsList posts={posts} deletefun={deletefun} waiting={waitingserver}/>}
         </div>
     );
 }
