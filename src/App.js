@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-        <h1>POSTS</h1>
-        <Post />``
+        
+        
     </div>
     
     );

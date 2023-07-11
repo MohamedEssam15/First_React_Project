@@ -1,3 +1,5 @@
+import {Link } from "react-router-dom";
+
 const PostsList = ({posts, deletefun})=>{
 
     return(
@@ -20,6 +22,8 @@ const PostsList = ({posts, deletefun})=>{
                             <td>{post.userId}</td>
                             <td>{post.body}</td>
                             <td><button type="button" onClick={()=>deletefun(post.id)} className="btn btn-danger">Delete</button></td>
+                            <td><Link to={"/posts/"+post.id} className="btn btn-info">Info</Link></td>
+                            <td><Link to={"/posts/edit/"+post.id} className="btn btn-primary">Edit</Link></td>
                         </tr>
                     ))}
             
